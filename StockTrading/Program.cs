@@ -17,7 +17,7 @@ namespace StockTrading
             portfolio.AddStockToPortfolio(stock1);
             portfolio.AddStockToPortfolio(stock2);
 
-            stock2.ChangeStockValue(8325.3);
+            stock1.ChangeStockValue(8325.3);
         }
     }
 }
