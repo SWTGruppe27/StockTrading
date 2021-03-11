@@ -8,9 +8,9 @@ namespace StockTrading
     {
         //private ISubject _subject;
 
-        public void Update()
+        public void Update(StockData stockData)
         {
-
+            
         }
     }
 }
