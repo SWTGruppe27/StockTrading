@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StockTrading
 {
-    public class PortfolioDisplay
+    public class PortfolioDisplay : IObserver
     {
         //private ISubject _subject;
 
