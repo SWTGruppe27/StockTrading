@@ -7,6 +7,18 @@ namespace StockTrading
     public class Portfolio : ISubject<Portfolio>, IObserver<PortfolioDisplay>
     {
         private List<IObserver<Portfolio>> observers = new List<IObserver<Portfolio>>();
+        private List<Stock> stocks;
+
+        public Portfolio()
+        {
+            stocks = new List<Stock>();
+        }
+
+        public void addStock(string name, double value)
+        {
+            Stock tempStock = new Stock(name,value);
+            stocks.Add(tempStock);
+        }
 
         public void Attach(IObserver<Portfolio> observer)
         {
@@ -20,12 +32,15 @@ namespace StockTrading
 
         public void Notify()
         {
-
+            foreach (var display in observers)
+            {
+                display.Update(this);
+            }
         }
 
-        public void Update(Portfolio stockData)
+        public void Update(PortfolioDisplay stockData)
         {
-
+            
         }
     }
 }

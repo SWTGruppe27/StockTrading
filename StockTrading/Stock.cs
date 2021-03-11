@@ -14,6 +14,10 @@ namespace StockTrading
             stockData = new StockData(name, value);
         }
 
+        public Stock()
+        {
+        }
+
         public void Attach(IObserver<Stock> observer)
         {
             observers.Add(observer);
