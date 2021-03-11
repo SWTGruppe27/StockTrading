@@ -6,16 +6,25 @@ namespace StockTrading
 {
     public class Stock : ISubject<Stock>
     {
-        private StockData stockData;
         private List<IObserver<Stock>> observers = new List<IObserver<Stock>>();
+
+        public string StockName { get; private set; }
+        public double Value { get;  set; }
 
         public Stock(string name, double value)
         {
-            stockData = new StockData(name, value);
+            StockName = name;
+            Value = value;
+        }
+        public void Print()
+        {
+            Console.WriteLine($"Name: {StockName} Value: {Value}");
         }
 
-        public Stock()
+        public void ChangeStockValue(double value)
         {
+            Value = value;
+            Notify();
         }
 
         public void Attach(IObserver<Stock> observer)

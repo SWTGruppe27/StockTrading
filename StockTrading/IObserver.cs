@@ -6,6 +6,6 @@ namespace StockTrading
 {
     public interface IObserver<T>
     {
-        void Update(T stockData);
+        void Update(T stock);
     }
 }

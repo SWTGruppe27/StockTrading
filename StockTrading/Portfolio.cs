@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace StockTrading
 {
-    public class Portfolio : ISubject<Portfolio>, IObserver<PortfolioDisplay>
+    public class Portfolio : ISubject<Portfolio>, IObserver<Stock>
     {
         private List<IObserver<Portfolio>> observers = new List<IObserver<Portfolio>>();
-        private List<Stock> stocks;
+        public ISubject<Stock> StockSubject { get; private set; }
+        public List<Stock> stocksInPortfolio { get; private set; }
 
-        public Portfolio()
+        public Portfolio(ISubject<Stock> subject)
         {
-            stocks = new List<Stock>();
+            StockSubject = subject;
+            StockSubject.Attach(this);
+            stocksInPortfolio = new List<Stock>();
         }
 
-        public void addStock(string name, double value)
+
+        public void AddStockToPortfolio(Stock addStock)
         {
-            Stock tempStock = new Stock(name,value);
-            stocks.Add(tempStock);
+            stocksInPortfolio.Add(addStock);
         }
 
         public void Attach(IObserver<Portfolio> observer)
@@ -38,9 +42,13 @@ namespace StockTrading
             }
         }
 
-        public void Update(PortfolioDisplay stockData)
+        public void Update(Stock updateStock)
         {
-            
+            int itemIndex = stocksInPortfolio.FindIndex(x => x.StockName == updateStock.StockName);
+            Stock itemWhoNeedUpdate = stocksInPortfolio.ElementAt(itemIndex);
+            itemWhoNeedUpdate.Value = updateStock.Value;
+
+            Notify();
         }
     }
 }
