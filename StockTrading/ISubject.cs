@@ -6,8 +6,8 @@ namespace StockTrading
 {
     public interface ISubject<T>
     {
-        void Attach(T observer);
-        void Detach(T observer);
+        void Attach(IObserver<T> observer);
+        void Detach(IObserver<T> observer);
         void Notify();
     }
 }

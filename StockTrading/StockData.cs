@@ -9,7 +9,7 @@ namespace StockTrading
         public string StockName { get; set; }
         public double Value { get; set; }
 
-        StockData(string stockName, double value)
+        public StockData(string stockName, double value)
         {
             Value = value;
             StockName = stockName;

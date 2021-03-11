@@ -4,8 +4,8 @@ using System.Text;
 
 namespace StockTrading
 {
-    public interface IObserver
+    public interface IObserver<T>
     {
-        void Update(StockData stockData);
+        void Update(T stockData);
     }
 }
